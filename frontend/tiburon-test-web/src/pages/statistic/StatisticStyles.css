@@ -1,0 +1,9 @@
+.statisticList {
+    margin: 0 auto;
+}
+
+.statisticWrapper {
+    background-color: aliceblue;
+    margin-top: 10px;
+    display: inline-block;
+}

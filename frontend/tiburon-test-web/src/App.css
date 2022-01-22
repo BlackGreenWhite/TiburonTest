@@ -1,0 +1,32 @@
+.page {
+  display: flex;
+  justify-content: space-between;
+  min-height: 1000px;
+}
+
+.page-wrapper {
+  width: 1400px;
+  align-content: center;
+  margin: 0 auto;
+}
+
+.content {
+    flex-grow: 3;
+    min-width: 50%;
+    text-align: center;
+}
+
+.advBlock {
+    background-color: #E8A87C;
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  .header {
+    background-color: #E27d60;
+    height: 100px;
+    text-align: center;
+    font: 24;
+    padding: 0 auto;
+  }
+  

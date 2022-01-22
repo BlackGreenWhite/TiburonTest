@@ -1,0 +1,13 @@
+C:\Users\user\Documents\GitHub\TiburonTestTask\backend\TiburonTestApi\Storage\bin\Debug\netcoreapp3.1\Storage.deps.json
+C:\Users\user\Documents\GitHub\TiburonTestTask\backend\TiburonTestApi\Storage\bin\Debug\netcoreapp3.1\Storage.dll
+C:\Users\user\Documents\GitHub\TiburonTestTask\backend\TiburonTestApi\Storage\bin\Debug\netcoreapp3.1\Storage.pdb
+C:\Users\user\Documents\GitHub\TiburonTestTask\backend\TiburonTestApi\Storage\obj\Debug\netcoreapp3.1\Storage.csproj.AssemblyReference.cache
+C:\Users\user\Documents\GitHub\TiburonTestTask\backend\TiburonTestApi\Storage\obj\Debug\netcoreapp3.1\Storage.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Documents\GitHub\TiburonTestTask\backend\TiburonTestApi\Storage\obj\Debug\netcoreapp3.1\Storage.AssemblyInfoInputs.cache
+C:\Users\user\Documents\GitHub\TiburonTestTask\backend\TiburonTestApi\Storage\obj\Debug\netcoreapp3.1\Storage.AssemblyInfo.cs
+C:\Users\user\Documents\GitHub\TiburonTestTask\backend\TiburonTestApi\Storage\obj\Debug\netcoreapp3.1\Storage.csproj.CoreCompileInputs.cache
+C:\Users\user\Documents\GitHub\TiburonTestTask\backend\TiburonTestApi\Storage\obj\Debug\netcoreapp3.1\Storage.dll
+C:\Users\user\Documents\GitHub\TiburonTestTask\backend\TiburonTestApi\Storage\obj\Debug\netcoreapp3.1\Storage.pdb
+C:\Users\user\Documents\GitHub\TiburonTestTask\backend\TiburonTestApi\Storage\bin\Debug\netcoreapp3.1\Storage.runtimeconfig.json
+C:\Users\user\Documents\GitHub\TiburonTestTask\backend\TiburonTestApi\Storage\bin\Debug\netcoreapp3.1\Storage.runtimeconfig.dev.json
+C:\Users\user\Documents\GitHub\TiburonTestTask\backend\TiburonTestApi\Storage\obj\Debug\netcoreapp3.1\Storage.genruntimeconfig.cache
