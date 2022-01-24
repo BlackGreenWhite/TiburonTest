@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\Documents\\GitHub\\TiburonTestTask\\backend\\TiburonTestApi\\Storage\\Storage.csproj": {}
+    "C:\\Users\\user\\Documents\\GitHub\\TiburonTest\\backend\\TiburonTestApi\\Storage\\Storage.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\Documents\\GitHub\\TiburonTestTask\\backend\\TiburonTestApi\\Storage\\Storage.csproj": {
+    "C:\\Users\\user\\Documents\\GitHub\\TiburonTest\\backend\\TiburonTestApi\\Storage\\Storage.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\Documents\\GitHub\\TiburonTestTask\\backend\\TiburonTestApi\\Storage\\Storage.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Documents\\GitHub\\TiburonTest\\backend\\TiburonTestApi\\Storage\\Storage.csproj",
         "projectName": "Storage",
-        "projectPath": "C:\\Users\\user\\Documents\\GitHub\\TiburonTestTask\\backend\\TiburonTestApi\\Storage\\Storage.csproj",
+        "projectPath": "C:\\Users\\user\\Documents\\GitHub\\TiburonTest\\backend\\TiburonTestApi\\Storage\\Storage.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\Documents\\GitHub\\TiburonTestTask\\backend\\TiburonTestApi\\Storage\\obj\\",
+        "outputPath": "C:\\Users\\user\\Documents\\GitHub\\TiburonTest\\backend\\TiburonTestApi\\Storage\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -41,6 +41,10 @@
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Abstractions": {
               "target": "Package",
               "version": "[3.1.1, )"
             },

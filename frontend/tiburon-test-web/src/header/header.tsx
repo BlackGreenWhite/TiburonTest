@@ -6,7 +6,7 @@ export const Header: React.FC = () =>
     return (
         <div className="header-content">
             <h1 className="header__logo">         
-            Header 
+                NoruBanner 
             </h1>
             <ul className="menu-list header__menu">
                 <li className="menu-list__item">Пункт 1</li>

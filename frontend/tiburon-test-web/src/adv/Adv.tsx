@@ -15,10 +15,9 @@ forward({
     to: sendStatisticFx.prepend(req => req)
 })
 
-export const Adv= ({targetSite, bannerSrc, width, height, bannerName} : AdvModel) =>
+export const Adv= ({targetSite, bannerSrc, width, height, bannerName, myIp} : AdvModel) =>
 {
     const [eventLocks, setEventLocks] = useState({watched:false, clicked:false, loaded: false});
-    const myIp = generateRandomIp();
     const eventHandler = (advEvent: AdvEvents, lockerName: "watched" | "clicked" | "loaded") => 
     {
         if (lockerName && eventLocks[lockerName] === false) 
@@ -44,7 +43,3 @@ export const Adv= ({targetSite, bannerSrc, width, height, bannerName} : AdvModel
     );
 }
 
-const generateRandomIp = () => {
-    const ipArr = Array.from({length: 4}, () => Math.floor(Math.random() * 256).toString());
-    return ipArr.join('.');
-}

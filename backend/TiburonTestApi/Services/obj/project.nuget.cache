@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "V8gbcoVESu5QZ0g+ksGtlG6v60ii0n6217TyKsGVfN4cLhoPHD4VLTBB4+bkGhdmOUFlHi6U7G5LOki5ceaAwA==",
+  "dgSpecHash": "853pc016uecjvpVOWDelLllYkyW0yrDabuOYYkLWwoegFyNukW97ruKZeqaSY5gosPurMO3a1jDFidP/GmMfCQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\user\\Documents\\GitHub\\TiburonTestTask\\backend\\TiburonTestApi\\Services\\Services.csproj",
+  "projectFilePath": "C:\\Users\\user\\Documents\\GitHub\\TiburonTest\\backend\\TiburonTestApi\\Services\\Services.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",

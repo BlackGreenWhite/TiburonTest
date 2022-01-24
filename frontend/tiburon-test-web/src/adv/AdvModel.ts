@@ -4,5 +4,6 @@ export interface AdvModel
     bannerSrc: string, 
     width: string, 
     height: string,
-    bannerName: string
+    bannerName: string,
+    myIp: string
 }

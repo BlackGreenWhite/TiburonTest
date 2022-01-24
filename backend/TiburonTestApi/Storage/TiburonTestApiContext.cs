@@ -13,11 +13,10 @@ namespace Storage
         {
             Database.EnsureCreated();
         }
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseNpgsql("Host=localhost;Port=5433;Database=TiburonTestDb;Username=postgres;Password=123qq321");
-        //}
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().HasAlternateKey(u => u.UserIP);
+        }
         public virtual DbSet<Statistic> Statistics { get; set; }
         public virtual DbSet<Banner> Banners { get; set; }
         public virtual DbSet<SiteBanner> SiteBanners { get; set; }

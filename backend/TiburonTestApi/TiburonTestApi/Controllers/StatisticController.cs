@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TiburonTestApi.Models;
 using System;
 using System.Linq;
+using System.Threading;
 
 namespace TiburonTestApi.Controllers
 {
@@ -18,6 +19,7 @@ namespace TiburonTestApi.Controllers
         private readonly ISiteService _siteService;
         private readonly ISiteBannerService _siteBannerService;
         private readonly IStatisticService _statisticService;
+        private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
         public StatisticController(IUserService userService, IBannerService bannerService, ISiteService siteService, ISiteBannerService siteBannerService, IStatisticService statisticService)
         {
             _userService = userService;
@@ -30,21 +32,28 @@ namespace TiburonTestApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Statistic>> Create(StatisticRequest statisticRequest)
         {
-            var formatedUrl = new Uri(statisticRequest.SiteUrl).AbsoluteUri;
-            var user = await _userService.GetByIp(statisticRequest.UserIP) ?? await _userService.Create(new User { UserIP = statisticRequest.UserIP });
-            var banner = await _bannerService.GetByName(statisticRequest.BannerName) ?? await _bannerService.Create(new Banner { BannerName = statisticRequest.BannerName });
-            var site = await _siteService.GetByUrl(formatedUrl) ?? await _siteService.Create(new Site { Url = formatedUrl });
-            var siteBanner = await _siteBannerService.GetBySiteAndBanner(banner.Id, site.Id) ?? await _siteBannerService.Create(new SiteBanner { SiteId = site.Id, BannerId = banner.Id });
-            var statistic = await _statisticService.GetByUserAndSiteBanner(user.Id, siteBanner.Id)
-                ?? await _statisticService.Create(new Statistic { UserId = user.Id, SiteBannerId = siteBanner.Id, AdvEvent = statisticRequest.AdvEventsEnum });
-            if (statisticRequest.AdvEventsEnum > statistic.AdvEvent)
+            await _semaphore.WaitAsync();
+            try
             {
-                var statisticReplacer = new Statistic { Id = statistic.Id, UserId = statistic.UserId, SiteBannerId = statistic.SiteBannerId, AdvEvent = statisticRequest.AdvEventsEnum };
-                await _statisticService.Update(statisticReplacer);
+                var formatedUrl = new Uri(statisticRequest.SiteUrl).AbsoluteUri;
+                var user = await _userService.GetByIp(statisticRequest.UserIP) ?? await _userService.Create(new User { UserIP = statisticRequest.UserIP });
+                var banner = await _bannerService.GetByName(statisticRequest.BannerName) ?? await _bannerService.Create(new Banner { BannerName = statisticRequest.BannerName });
+                var site = await _siteService.GetByUrl(formatedUrl) ?? await _siteService.Create(new Site { Url = formatedUrl });
+                var siteBanner = await _siteBannerService.GetBySiteAndBanner(banner.Id, site.Id) ?? await _siteBannerService.Create(new SiteBanner { SiteId = site.Id, BannerId = banner.Id });
+                var statistic = await _statisticService.GetByUserAndSiteBanner(user.Id, siteBanner.Id)
+                    ?? await _statisticService.Create(new Statistic { UserId = user.Id, SiteBannerId = siteBanner.Id, AdvEvent = statisticRequest.AdvEventsEnum });
+                if (statisticRequest.AdvEventsEnum > statistic.AdvEvent)
+                {
+                    var statisticReplacer = new Statistic { Id = statistic.Id, UserId = statistic.UserId, SiteBannerId = statistic.SiteBannerId, AdvEvent = statisticRequest.AdvEventsEnum };
+                    await _statisticService.Update(statisticReplacer);
+                }
+                var result = _statisticService.GetById(statistic.Id);
+                return Ok(result);
             }
-            var result = _statisticService.GetById(statistic.Id);
-            return Ok(result);
-
+            finally
+            {
+                _semaphore.Release();
+            }
         }
         [HttpGet("onSite")]
         public async Task<ActionResult<IReadOnlyCollection<Statistic>>> GetAllOnSite(string siteUrl)
