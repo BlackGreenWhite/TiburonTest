@@ -24,14 +24,14 @@ namespace Services
 
         public async Task<StatisticModel> Create(Statistic statistic)
         {
-            _tiburonTestApiContext.Statistics?.Add(statistic);
+            _tiburonTestApiContext.Statistics.Add(statistic);
             await _tiburonTestApiContext.SaveChangesAsync();
             return statistic.ToModel();
         }
 
         public async Task<StatisticModel> Delete(Statistic statistic)
         {
-            var exister = _tiburonTestApiContext.Statistics?.FirstOrDefault(x => x.Id == statistic.Id);
+            var exister = _tiburonTestApiContext.Statistics.FirstOrDefault(x => x.Id == statistic.Id);
             if (exister != null)
             {
                 _tiburonTestApiContext.Statistics?.Remove(exister);
@@ -43,30 +43,30 @@ namespace Services
 
         public async Task<IReadOnlyCollection<StatisticModel>> GetAll()
         {
-            var statistics = await _tiburonTestApiContext.Statistics?
+            var statistics = await _tiburonTestApiContext.Statistics
                 .Select(x => x.ToModel())
-                .ToListAsync();
+                .ToArrayAsync();
             return statistics;
         }
         public async Task<IReadOnlyCollection<StatisticModel>> GetAllOnSite(long siteId)
         {
-            var statistics = await _tiburonTestApiContext.Statistics?
+            var statistics = await _tiburonTestApiContext.Statistics
                 .Where(x=>x.SiteBanner.SiteId == siteId)
                 .Select(x => x.ToModel())
-                .ToListAsync();
+                .ToArrayAsync();
             return statistics;
         }
 
         public async Task<StatisticModel> GetById(long id)
         {
-            var statistic = await _tiburonTestApiContext.Statistics?
+            var statistic = await _tiburonTestApiContext.Statistics
                             .FirstOrDefaultAsync(x => x.Id == id);
             return statistic.ToModel();
         }
 
         public async Task<StatisticModel> Update(Statistic statistic)
         {
-            var exister = _tiburonTestApiContext.Statistics?.FirstOrDefault(x => x.Id == statistic.Id);
+            var exister = _tiburonTestApiContext.Statistics.FirstOrDefault(x => x.Id == statistic.Id);
             if (exister != null)
             {
                 exister.SiteBannerId = statistic.SiteBannerId;
@@ -80,7 +80,7 @@ namespace Services
 
         public async Task<StatisticModel> GetByUserAndSiteBanner(long userId, long siteBannerId)
         {
-            var statistic = await _tiburonTestApiContext.Statistics?
+            var statistic = await _tiburonTestApiContext.Statistics
                             .FirstOrDefaultAsync(x => x.UserId == userId && x.SiteBannerId == siteBannerId);
             return statistic.ToModel();
         }

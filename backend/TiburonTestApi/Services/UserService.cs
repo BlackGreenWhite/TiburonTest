@@ -24,9 +24,15 @@ namespace Services
         }
         public async Task<UserModel> Create(User user)
         {
-            _tiburonTestApiContext.Users?.Add(user);
-            await _tiburonTestApiContext.SaveChangesAsync();
-            return user.ToModel();
+            try {
+                _tiburonTestApiContext.Users.Add(user);
+                await _tiburonTestApiContext.SaveChangesAsync();
+                return user.ToModel();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("User creation error", ex);
+            }
         }
 
         public async Task<UserModel> Delete(User user)
@@ -34,7 +40,7 @@ namespace Services
             var exister = _tiburonTestApiContext.Users?.FirstOrDefault(x => x.Id == user.Id);
             if (exister != null)
             {
-                _tiburonTestApiContext.Users?.Remove(exister);
+                _tiburonTestApiContext.Users.Remove(exister);
                 await _tiburonTestApiContext.SaveChangesAsync();
                 return exister.ToModel();
             }
@@ -43,22 +49,22 @@ namespace Services
 
         public async Task<IReadOnlyCollection<UserModel>> GetAll()
         {
-            var users = await _tiburonTestApiContext.Users?
+            var users = await _tiburonTestApiContext.Users
                 .Select(x => x.ToModel())
-                .ToListAsync();
+                .ToArrayAsync();
             return users;
         }
 
         public async Task<UserModel> GetById(long id)
         {
-            var user = await _tiburonTestApiContext.Users?
+            var user = await _tiburonTestApiContext.Users
                             .FirstOrDefaultAsync(x => x.Id == id);
             return user.ToModel();
         }
 
         public async Task<UserModel> Update(User user)
         {
-            var exister = _tiburonTestApiContext.Users?.FirstOrDefault(x => x.Id == user.Id);
+            var exister = _tiburonTestApiContext.Users.FirstOrDefault(x => x.Id == user.Id);
             if (exister != null)
             {
                 exister.UserIP = user.UserIP;
@@ -70,7 +76,7 @@ namespace Services
 
         public async Task<UserModel> GetByIp(string ip)
         {
-            var user = await _tiburonTestApiContext.Users?
+            var user = await _tiburonTestApiContext.Users
                             .FirstOrDefaultAsync(x => x.UserIP == ip);
             return user.ToModel();
         }

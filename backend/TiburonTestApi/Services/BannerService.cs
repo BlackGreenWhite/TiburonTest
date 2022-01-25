@@ -24,17 +24,17 @@ namespace Services
 
         public async Task<BannerModel> Create(Banner banner)
         {
-            _tiburonTestApiContext.Banners?.Add(banner);
+            _tiburonTestApiContext.Banners.Add(banner);
             await _tiburonTestApiContext.SaveChangesAsync();
             return banner.ToModel();
         }
 
         public async Task<BannerModel> Delete(Banner banner)
         {
-            var exister = _tiburonTestApiContext.Banners?.FirstOrDefault(x => x.Id == banner.Id);
+            var exister = _tiburonTestApiContext.Banners.FirstOrDefault(x => x.Id == banner.Id);
             if (exister != null)
             {
-                _tiburonTestApiContext.Banners?.Remove(exister);
+                _tiburonTestApiContext.Banners.Remove(exister);
                 await _tiburonTestApiContext.SaveChangesAsync();
                 return exister.ToModel();
             }
@@ -43,22 +43,22 @@ namespace Services
 
         public async Task<IReadOnlyCollection<BannerModel>> GetAll()
         {
-            var banners = await _tiburonTestApiContext.Banners?
+            var banners = await _tiburonTestApiContext.Banners
                 .Select(x => x.ToModel())
-                .ToListAsync();
+                .ToArrayAsync();
             return banners;
         }
 
         public async Task<BannerModel> GetById(long id)
         {
-            var banner = await _tiburonTestApiContext.Banners?
+            var banner = await _tiburonTestApiContext.Banners
                             .FirstOrDefaultAsync(x => x.Id == id);
             return banner.ToModel();
         }
 
         public async Task<BannerModel> Update(Banner banner)
         {
-            var exister = _tiburonTestApiContext.Banners?.FirstOrDefault(x => x.Id == banner.Id);
+            var exister = _tiburonTestApiContext.Banners.FirstOrDefault(x => x.Id == banner.Id);
             if (exister != null)
             {
                 exister.BannerName = banner.BannerName;
@@ -70,7 +70,7 @@ namespace Services
 
         public async Task<BannerModel> GetByName(string name)
         {
-            var banner = await _tiburonTestApiContext.Banners?
+            var banner = await _tiburonTestApiContext.Banners
                             .FirstOrDefaultAsync(x => x.BannerName == name);
             return banner.ToModel();
         }
