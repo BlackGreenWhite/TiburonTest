@@ -21,7 +21,7 @@ export const App: React.FC = () => {
         </section>
         <section className="advBlock">
         <AdvWrapper bannerSrc="https://assets.turbologo.ru/blog/ru/2020/02/18162740/Yandex-logo-958x575.png" 
-          width="215px" height="143px" targetSite="http://ya.ru" bannerName="secondBanner" myIp={myIp}/>
+          width="215px" height="143px" targetSite="http://ya.ru" bannerName="yandexBanner" myIp={myIp}/>
         </section>
       </main>
     </div>

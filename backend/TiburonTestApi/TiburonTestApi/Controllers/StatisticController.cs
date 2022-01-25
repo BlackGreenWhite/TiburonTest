@@ -19,7 +19,7 @@ namespace TiburonTestApi.Controllers
         private readonly ISiteService _siteService;
         private readonly ISiteBannerService _siteBannerService;
         private readonly IStatisticService _statisticService;
-        private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
+        static SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
         public StatisticController(IUserService userService, IBannerService bannerService, ISiteService siteService, ISiteBannerService siteBannerService, IStatisticService statisticService)
         {
             _userService = userService;
@@ -32,7 +32,7 @@ namespace TiburonTestApi.Controllers
         [HttpPost]
         public async Task<ActionResult<Statistic>> Create(StatisticRequest statisticRequest)
         {
-            await _semaphore.WaitAsync();
+                await _semaphore.WaitAsync();
             try
             {
                 var formatedUrl = new Uri(statisticRequest.SiteUrl).AbsoluteUri;

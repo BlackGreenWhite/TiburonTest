@@ -11,5 +11,6 @@ namespace Services.Interfaces
     public interface IUserService:ICRUD<User, UserModel>
     {
         Task<UserModel> GetByIp(string ip);
+        UserModel SuperCreate(User user);
     }
 }

@@ -24,15 +24,22 @@ namespace Services
         }
         public async Task<UserModel> Create(User user)
         {
-            try {
-                _tiburonTestApiContext.Users.Add(user);
-                await _tiburonTestApiContext.SaveChangesAsync();
-                return user.ToModel();
-            }
-            catch (Exception ex)
+            var exister = _tiburonTestApiContext.Users.FirstOrDefault(x => x.UserIP == user.UserIP);
+            if (exister == null)
             {
-                throw new Exception("User creation error", ex);
+                await _tiburonTestApiContext.Users.AddAsync(user);
+                await _tiburonTestApiContext.SaveChangesAsync();
             }
+            exister = _tiburonTestApiContext.Users.FirstOrDefault(x => x.UserIP == user.UserIP);
+
+            return exister.ToModel();
+        }
+
+        public UserModel SuperCreate(User user)
+        {
+            _tiburonTestApiContext.Users.Add(user);
+            _tiburonTestApiContext.SaveChanges();
+            return user.ToModel();  
         }
 
         public async Task<UserModel> Delete(User user)

@@ -38,11 +38,11 @@ namespace TiburonTestApi
             services.AddDbContext<TiburonTestApiContext>(options =>
                 options.UseNpgsql(connection));
 
-            services.AddTransient<IBannerService, BannerService>();
-            services.AddTransient<ISiteService, SiteService>();
-            services.AddTransient<ISiteBannerService, SiteBannerService>();
-            services.AddTransient<IUserService, UserService>();
-            services.AddTransient<IStatisticService, StatisticService>();
+            services.AddScoped<IBannerService, BannerService>();
+            services.AddScoped<ISiteService, SiteService>();
+            services.AddScoped<ISiteBannerService, SiteBannerService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IStatisticService, StatisticService>();
 
             services.AddSwaggerGen(options =>
             {
