@@ -1,2 +1,5 @@
 # TiburonTest
-Make "docker-compose up"
+Make 
+"docker volume create pgdata"
+"docker-compose up"
+Go to localhost:3000
